@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\src\test\Akee\proj.win32\vc2013\main.cpp" />
+    <ClCompile Include="..\..\..\..\..\src\test\akee\main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B1D72B0-C5B1-46FF-BFCE-5333A9F47ED8}</ProjectGuid>

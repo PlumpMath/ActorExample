@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\src\test\Akee\proj.win32\vc2013\main.cpp">
+    <ClCompile Include="..\..\..\..\..\src\test\akee\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
