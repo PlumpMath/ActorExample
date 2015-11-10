@@ -22,6 +22,9 @@
     <Filter Include="src\config">
       <UniqueIdentifier>{512c107c-812c-4405-93d0-b4dd5ae8d28f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\actor">
+      <UniqueIdentifier>{56512d65-1891-4495-a52d-ab2d773b4597}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\stdsize.h">
       <Filter>src\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorSystem.h">
+      <Filter>src\actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

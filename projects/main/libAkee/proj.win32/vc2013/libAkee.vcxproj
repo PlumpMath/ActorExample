@@ -92,6 +92,7 @@
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stdint.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\stdsize.h" />
+    <ClInclude Include="ActorSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\Akee\akee.cpp" />
