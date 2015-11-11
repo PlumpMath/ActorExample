@@ -83,6 +83,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\akee.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\inttypes.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\msvc\inttypes.h" />
@@ -92,7 +93,6 @@
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stdint.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\stdsize.h" />
-    <ClInclude Include="ActorSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\Akee\akee.cpp" />

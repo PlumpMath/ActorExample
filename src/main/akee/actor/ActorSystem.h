@@ -19,11 +19,15 @@ private:
 	std::string actorName_;
 
 public:
-	Actor(std::string actorName) {
+	Actor(const std::string &actorName) {
 		actorName_ = actorName;
 	}
 
-	void setName(std::string actorName) {
+	std::string getName() const {
+		return actorName_;
+	}
+
+	void setName(const std::string & actorName) {
 		actorName_ = actorName;
 	}
 };
@@ -33,7 +37,7 @@ private:
 	std::string actorName_;
 
 public:
-	static Actor create(std::string actorName) {
+	static Actor create(const std::string & actorName) {
 		Actor actor(actorName);
 		return actor;
 	}
