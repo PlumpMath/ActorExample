@@ -56,6 +56,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\..\..\..\src\main;..\..\..\..\..\src\main\akee;..\..\..\..\..\include\main;..\..\..\..\..\include\main\akee;..\..\..\..\..\test;..\..\..\..\..\deps;$(SolutionDir)src\main;$(SolutionDir)include\main;.\src\main;.\include\main;.\test;.\deps;$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;_DEBUG;AKEE_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -72,6 +73,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\..\..\..\src\main;..\..\..\..\..\src\main\akee;..\..\..\..\..\include\main;..\..\..\..\..\include\main\akee;..\..\..\..\..\test;..\..\..\..\..\deps;$(SolutionDir)src\main;$(SolutionDir)include\main;.\src\main;.\include\main;.\test;.\deps;$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;NDEBUG;AKEE_STATIC_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -83,7 +85,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Actor.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\akee.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\inttypes.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\msvc\inttypes.h" />
@@ -93,8 +98,14 @@
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stdint.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\stdsize.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\config\Config.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\config\ConfigurationFactory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\Actor.cpp" />
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp" />
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.cpp" />
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\Akee\akee.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

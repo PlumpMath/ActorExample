@@ -4,7 +4,7 @@
 
 #include "akee/akee.h"
 
-int main()
+int test_main()
 {
 	printf("Hello world! Akee library!\n\n", 0);
 	return 0;

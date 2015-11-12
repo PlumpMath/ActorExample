@@ -3,19 +3,26 @@
 #include <stdlib.h>
 
 #include <akee/akee.h>
+
+//#define AKEE_USE_STATICLIB
+
 #include <akee/actor/ActorSystem.h>
 
 #include <string>
 
 using namespace akee;
-using namespace std;
 
 int main()
 {
-	Actor actor = ActorSystem::create("Factorial N");
-	std::string actorName = actor.getName();
-	printf("Hello world! Akee!\n", 0);
-	printf("Actor Name: %s.\n", actorName.c_str());
+	only_test_for_api_export();
+
+	ActorSystem * actorSystem = ActorSystem::create("Factorial N");
+	std::string systemName = actorSystem->getName();
+	printf("Hello world! Welcome to use Akee!\n", 0);
+	printf("ActorSystem Name: %s.\n", systemName.c_str());
+	printf("\n");
+	if (actorSystem)
+		delete actorSystem;
 	system("pause");
 	return 0;
 }

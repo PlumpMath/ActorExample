@@ -57,10 +57,37 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.h">
       <Filter>src\actor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Actor.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\config\Config.h">
+      <Filter>src\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\config\ConfigurationFactory.h">
+      <Filter>src\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\Akee\akee.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp">
+      <Filter>src\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\Actor.cpp">
+      <Filter>src\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.cpp">
+      <Filter>src\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp">
+      <Filter>src\actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
