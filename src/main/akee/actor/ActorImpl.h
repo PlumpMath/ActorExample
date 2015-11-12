@@ -7,11 +7,9 @@
 #endif
 
 #include "akee/basic/stddef.h"
-
 #include <string>
 
 #include "akee/actor/Actor.h"
-
 #include "akee/config/Config.h"
 #include "akee/config/ConfigurationFactory.h"
 

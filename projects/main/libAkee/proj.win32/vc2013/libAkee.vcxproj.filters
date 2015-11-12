@@ -72,6 +72,21 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h">
       <Filter>src\actor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorBase.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRefFactory.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorContext.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActor.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRef.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\Akee\akee.cpp">

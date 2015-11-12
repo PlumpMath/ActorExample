@@ -7,7 +7,6 @@
 #endif
 
 #include "akee/basic/stddef.h"
-
 #include <string>
 
 #include <akee/config/Config.h>

@@ -86,9 +86,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Actor.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorBase.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorContext.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRef.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRefFactory.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActor.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\akee.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\inttypes.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\msvc\inttypes.h" />

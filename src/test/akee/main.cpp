@@ -1,14 +1,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <akee/akee.h>
+#include <string>
 
 //#define AKEE_USE_STATICLIB
-
+#include <akee/akee.h>
 #include <akee/actor/ActorSystem.h>
-
-#include <string>
+#include <akee/actor/ActorBase.h>
 
 using namespace akee;
 
@@ -16,9 +14,14 @@ int main()
 {
 	only_test_for_api_export();
 
+    ActorBase * actorBase = new ActorBase();
+    IActorContext * context = actorBase->getActorContext();
+    if (actorBase)
+        delete actorBase;
+
 	ActorSystem * actorSystem = ActorSystem::create("Factorial N");
 	std::string systemName = actorSystem->getName();
-	printf("Hello world! Welcome to use Akee!\n", 0);
+	printf("Welcome to use Akee!\n", 0);
 	printf("ActorSystem Name: %s.\n", systemName.c_str());
 	printf("\n");
 	if (actorSystem)
