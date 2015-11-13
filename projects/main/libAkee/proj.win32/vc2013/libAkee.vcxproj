@@ -105,6 +105,8 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\stdsize.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\Config.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\ConfigurationFactory.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Message.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\Actor.cpp" />

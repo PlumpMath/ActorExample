@@ -25,6 +25,12 @@
     <Filter Include="src\actor">
       <UniqueIdentifier>{56512d65-1891-4495-a52d-ab2d773b4597}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\event">
+      <UniqueIdentifier>{9da3fdaa-91e9-47eb-b9d2-0ecbd86c4074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dispatch">
+      <UniqueIdentifier>{acdedb1e-a7b6-4678-8b6f-ae9643d19d44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h">
@@ -86,6 +92,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRef.h">
       <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Message.h">
+      <Filter>src\dispatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h">
+      <Filter>src\dispatch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
