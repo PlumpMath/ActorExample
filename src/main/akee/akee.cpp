@@ -6,6 +6,6 @@
 
 int test_main()
 {
-	printf("Hello world! Akee library!\n\n", 0);
+	printf("Hello world! Welcome to Akee library!\n\n", 0);
 	return 0;
 }
