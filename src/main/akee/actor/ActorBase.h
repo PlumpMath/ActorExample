@@ -22,29 +22,29 @@ class IActorRef;
 
 class ActorBase : public IInternalActor {
 private:
-	std::string name_;
-	Config config_;
+    std::string name_;
+    Config config_;
     IActorContext * context_;
 
 public:
-	ActorBase() {
-		initActor("default", ConfigurationFactory::load());
-	}
+    ActorBase() {
+        initActor("default", ConfigurationFactory::load());
+    }
 
-	ActorBase(const std::string & name) {
-		initActor(name, ConfigurationFactory::load());
-	}
+    ActorBase(const std::string & name) {
+        initActor(name, ConfigurationFactory::load());
+    }
 
-	ActorBase(const std::string & name, const Config & config) {
-		initActor(name, config);
-	}
+    ActorBase(const std::string & name, const Config & config) {
+        initActor(name, config);
+    }
 
-	ActorBase(const ActorBase & src) {
-		cloneActor(src);
-	}
+    ActorBase(const ActorBase & src) {
+        cloneActor(src);
+    }
 
-	~ActorBase() {
-	}
+    ~ActorBase() {
+    }
 
 private:
     void initActor(const std::string & name, const Config & config) {
@@ -53,13 +53,13 @@ private:
     }
 
 protected:
-	//ActorBase * createActor(const std::string & name, const Config & config);
-	//ActorBase * createAndStartActor(const std::string & name, const Config & config);
+    //ActorBase * createActor(const std::string & name, const Config & config);
+    //ActorBase * createAndStartActor(const std::string & name, const Config & config);
 
-	void cloneActor(const ActorBase & src) {
-		this->name_ = src.name_;
-		this->config_ = src.config_;
-	}
+    void cloneActor(const ActorBase & src) {
+        this->name_ = src.name_;
+        this->config_ = src.config_;
+    }
 
 public:
     IActorRef * getSelf() const { return nullptr; }
@@ -72,17 +72,17 @@ public:
         return this->getContext();
     };
 
-	std::string getName() const {
-		return name_;
-	}
+    std::string getName() const {
+        return name_;
+    }
 
-	void setName(const std::string & name) {
-		name_ = name;
-	}
+    void setName(const std::string & name) {
+        name_ = name;
+    }
 
-	int start() {
-		return 0;
-	}
+    int start() {
+        return 0;
+    }
 };
 
 }  /* namespace akee */

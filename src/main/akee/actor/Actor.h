@@ -16,50 +16,50 @@ namespace akee {
 
 class Actor {
 private:
-	std::string name_;
-	Config config_;
+    std::string name_;
+    Config config_;
 
 public:
-	Actor() {
-		createActor("default", ConfigurationFactory::load());
-	}
+    Actor() {
+        createActor("default", ConfigurationFactory::load());
+    }
 
-	Actor(const std::string & name) {
-		createActor(name, ConfigurationFactory::load());
-	}
+    Actor(const std::string & name) {
+        createActor(name, ConfigurationFactory::load());
+    }
 
-	Actor(const std::string & name, const Config & config) {
-		createActor(name, config);
-	}
+    Actor(const std::string & name, const Config & config) {
+        createActor(name, config);
+    }
 
-	Actor(const Actor & src) {
-		cloneActor(src);
-	}
+    Actor(const Actor & src) {
+        cloneActor(src);
+    }
 
-	~Actor() {
-	}
+    ~Actor() {
+    }
 
 protected:
-	Actor * createActor(const std::string & name, const Config & config);
-	Actor * createAndStartActor(const std::string & name, const Config & config);
+    Actor * createActor(const std::string & name, const Config & config);
+    Actor * createAndStartActor(const std::string & name, const Config & config);
 
-	void cloneActor(const Actor & src) {
-		this->name_ = src.name_;
-		this->config_ = src.config_;
-	}
+    void cloneActor(const Actor & src) {
+        this->name_ = src.name_;
+        this->config_ = src.config_;
+    }
 
 public:
-	std::string getName() const {
-		return name_;
-	}
+    std::string getName() const {
+        return name_;
+    }
 
-	void setName(const std::string & name) {
-		name_ = name;
-	}
+    void setName(const std::string & name) {
+        name_ = name;
+    }
 
-	int start() {
-		return 0;
-	}
+    int start() {
+        return 0;
+    }
 };
 
 }  /* namespace akee */

@@ -16,56 +16,56 @@ namespace akee {
 
 class ActorSystem {
 private:
-	std::string name_;
-	Config config_;
+    std::string name_;
+    Config config_;
 
 public:
-	ActorSystem(const std::string & name) {
-		initActorSystem(name, ConfigurationFactory::load());
-	}
+    ActorSystem(const std::string & name) {
+        initActorSystem(name, ConfigurationFactory::load());
+    }
 
-	ActorSystem(const std::string & name, const Config & withFallBack) {
-		initActorSystem(name, withFallBack);
-	}
+    ActorSystem(const std::string & name, const Config & withFallBack) {
+        initActorSystem(name, withFallBack);
+    }
 
 private:
-	void initActorSystem(const std::string & name, const Config & withFallBack) {
-		name_ = name;
-		config_ = withFallBack;
-	}
+    void initActorSystem(const std::string & name, const Config & withFallBack) {
+        name_ = name;
+        config_ = withFallBack;
+    }
 
 protected:
-	static ActorSystem * createAndStartSystem(const std::string & name, const Config & withFallBack);
+    static ActorSystem * createAndStartSystem(const std::string & name, const Config & withFallBack);
 
 public:
-	static ActorSystem * create(const std::string & name) {
-		return createAndStartSystem(name, ConfigurationFactory::load());
-	}
+    static ActorSystem * create(const std::string & name) {
+        return createAndStartSystem(name, ConfigurationFactory::load());
+    }
 
-	static ActorSystem * create(const std::string & name, const Config & config) {
-		return createAndStartSystem(name, config);
-	}
+    static ActorSystem * create(const std::string & name, const Config & config) {
+        return createAndStartSystem(name, config);
+    }
 
-	std::string getName() const {
-		return name_;
-	}
+    std::string getName() const {
+        return name_;
+    }
 
-	void setName(const std::string & name) {
-		name_ = name;
-	}
+    void setName(const std::string & name) {
+        name_ = name;
+    }
 
-	// Startup the actor systems
-	int start() {
-		return 0;
-	}
+    // Startup the actor systems
+    int start() {
+        return 0;
+    }
 };
 
 }  /* namespace akee */
 
  AKEE_API int only_test_for_api_export() {
-	// Do nothing!!
+    // Do nothing!!
     printf("Only test for api export.\n");
-	return 0;
+    return 0;
 }
 
 #ifndef DEF_ACTORSYSTEM_NOINLINE
@@ -75,11 +75,11 @@ public:
 namespace akee {
 
 ActorSystem * ActorSystem::createAndStartSystem(const std::string & name, const Config & withFallBack) {
-	ActorSystem * system = new ActorSystemImpl(name, withFallBack);
-	if (system) {
-		system->start();
-	}
-	return system;
+    ActorSystem * system = new ActorSystemImpl(name, withFallBack);
+    if (system) {
+        system->start();
+    }
+    return system;
 }
 
 }  /* namespace akee */

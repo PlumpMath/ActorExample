@@ -17,25 +17,25 @@ namespace akee {
 
 class ActorImpl : public Actor {
 public:
-	ActorImpl() : Actor() {
+    ActorImpl() : Actor() {
 
-	}
+    }
 
-	ActorImpl(const std::string & name) : Actor(name) {
-		//
-	}
+    ActorImpl(const std::string & name) : Actor(name) {
+        //
+    }
 
-	ActorImpl(const std::string & name, const Config & config)
-		: Actor(name, config) {
-		//
-	}
+    ActorImpl(const std::string & name, const Config & config)
+        : Actor(name, config) {
+        //
+    }
 
-	~ActorImpl() {
-	}
+    ~ActorImpl() {
+    }
 
 protected:
-	Actor * createActorImpl(const std::string & name, const Config & config);
-	Actor * createAndStartActorImpl(const std::string & name, const Config & config);
+    Actor * createActorImpl(const std::string & name, const Config & config);
+    Actor * createAndStartActorImpl(const std::string & name, const Config & config);
 };
 
 extern Actor * static_createActorImpl(const std::string & name, const Config & config);
