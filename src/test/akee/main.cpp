@@ -6,6 +6,7 @@
 //#define AKEE_USE_STATICLIB
 #include <akee/akee.h>
 #include <akee/actor/ActorSystem.h>
+#include <akee/actor/Actor.h>
 #include <akee/actor/ActorBase.h>
 
 using namespace akee;
@@ -114,6 +115,13 @@ double calulatePiFor(int start, int numOfElements) {
     }
     return acc;
 }
+
+class UntypedActor : public akee::Actor {
+private:
+    // 
+public:
+    // 
+};
 
 class Worker : public UntypedActor {
 public:

@@ -21,15 +21,15 @@ private:
 
 public:
     Actor() {
-        createActor("default", ConfigurationFactory::load());
+        initActor("default", ConfigurationFactory::load());
     }
 
     Actor(const std::string & name) {
-        createActor(name, ConfigurationFactory::load());
+        initActor(name, ConfigurationFactory::load());
     }
 
     Actor(const std::string & name, const Config & config) {
-        createActor(name, config);
+        initActor(name, config);
     }
 
     Actor(const Actor & src) {
@@ -37,6 +37,12 @@ public:
     }
 
     ~Actor() {
+    }
+
+private:
+    void initActor(const std::string & name, const Config & config) {
+        name_ = name;
+        config_ = config;
     }
 
 protected:
