@@ -12,12 +12,15 @@
 #include <akee/config/Config.h>
 #include <akee/config/ConfigurationFactory.h>
 
+#include <akee/actor/IActorContext.h>
+
 namespace akee {
 
 class Actor {
 private:
     std::string name_;
     Config config_;
+    IActorContext * context_;
 
 public:
     Actor() {

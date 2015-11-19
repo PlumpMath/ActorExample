@@ -48,9 +48,6 @@
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stdint.h">
       <Filter>src\basic</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\src\main\Akee\akee.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\inttypes.h">
       <Filter>src\basic</Filter>
     </ClInclude>
@@ -99,11 +96,17 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h">
       <Filter>src\dispatch</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\IMessage.h">
+      <Filter>src\dispatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\Akee\all.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorRef.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\src\main\Akee\akee.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp">
       <Filter>src\actor</Filter>
     </ClCompile>
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp">
       <Filter>src\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\main\Akee\all.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

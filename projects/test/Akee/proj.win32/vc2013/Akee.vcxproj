@@ -12,6 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\test\akee\main.cpp" />
+    <ClCompile Include="..\..\..\..\..\src\test\akee\Pi.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\src\test\akee\Pi.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B1D72B0-C5B1-46FF-BFCE-5333A9F47ED8}</ProjectGuid>

@@ -18,5 +18,13 @@
     <ClCompile Include="..\..\..\..\..\src\test\akee\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\test\akee\Pi.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\src\test\akee\Pi.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

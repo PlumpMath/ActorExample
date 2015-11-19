@@ -21,7 +21,8 @@ public:
     }
 };
 
-struct IActorRef {
+class IActorRef {
+public:
     virtual ActorPath * getPath() const = 0;
 };
 

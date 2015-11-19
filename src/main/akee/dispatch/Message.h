@@ -6,16 +6,14 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
 #include <string>
+
+#include "akee/basic/stddef.h"
+#include "akee/dispatch/IMessage.h"
 
 namespace akee {
 
 class ActorPath;
-
-struct IMessage {
-    virtual ActorPath * getPath() const = 0;
-};
 
 class Message : public IMessage {
     //

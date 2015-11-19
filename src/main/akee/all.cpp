@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "akee/akee.h"
+#include "akee/all.h"
 
 int test_main()
 {
