@@ -19,6 +19,15 @@
 
 using namespace akee;
 
+namespace System {
+
+static
+int getAvailableProcessor() {
+    return 2;
+}
+
+}
+
 class Calulate {
     //
 };
@@ -77,13 +86,6 @@ public:
     }
 };
 
-enum {
-    ACTOR_TYPE_UNKNOWN = (unsigned)(-1),
-    ACTOR_TYPE_START = 0,
-    ACTOR_TYPE_PARALLEL_PI,
-    ACTOR_TYPE_LAST
-};
-
 static
 double calulatePiFor(int start, int numOfElements) {
     double acc = 0.0;
@@ -107,16 +109,62 @@ public:
 };
 
 class Worker : public UntypedActor {
+protected:
+    enum {
+        MESSAGE_WORK
+    };
+
 public:
-    void onReceive(IMessage * message) {
+    void onReceive(MessageBase * message) {
         message_type msgType = message->getType();
-        if (msgType == ACTOR_TYPE_PARALLEL_PI) {
+        if (msgType == MESSAGE_WORK) {
             //Work * work = dynamic_cast<Work *>(message->getObject());
             Work * work = reinterpret_cast<Work *>(message->getObject());
             if (work) {
                 double result = calulatePiFor(work->getStart(), work->getNumOfElements());
                 this->getSender().tell((void *)new Result(result), getSelf());
             }
+        }
+        else {
+            // UnHandle(message);
+        }
+    }
+};
+
+class Master : public UntypedActor {
+private:
+    int numOfWorkers_;
+    int numOfMessages_;
+    int numOfElements_;
+
+    ActorRef * listener_;
+    ActorRef * workerRouter_;
+
+protected:
+    enum {
+        MESSAGE_CALCULATE,
+        MESSAGE_RESULT
+    };
+
+public:
+    Master(int numOfWorkers, int numOfMessages, int numOfElements, ActorRef * listener) {
+        this->numOfMessages_ = numOfMessages;
+        this->numOfElements_ = numOfElements;
+        this->listener_ = listener;
+
+        workerRouter_ = this->getContext()->actorOf(new Props<Worker>->withRouter(new RoundRobinRouter(numOfWorkers)),
+            "workerRouter");
+    }
+
+    void onReceive(MessageBase *message) {
+        message_type msgType = message->getType();
+        if (msgType == MESSAGE_CALCULATE) {
+            for (int start = 0; start < numOfMessages_; start++) {
+                workerRouter_.tell(new Work(start, numOfElements_), getSelf());
+            }
+        }
+        else if (msgType == MESSAGE_CALCULATE) {
+            //
         }
         else {
             // UnHandle(message);
@@ -131,15 +179,6 @@ public:
     Props() {}
     Props(std::string name) {}
 };
-
-namespace System {
-
-static
-int getAvailableProcessor() {
-    return 2;
-}
-
-}
 
 class Pi {
 public:

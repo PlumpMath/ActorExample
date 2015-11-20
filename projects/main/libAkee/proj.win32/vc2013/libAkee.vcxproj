@@ -88,13 +88,16 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Actor.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorBase.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorPath.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorRef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Deploy.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorContext.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRefFactory.h" />
-    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActor.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActorRef.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Props.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\all.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\inttypes.h" />
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\msvc\inttypes.h" />
@@ -106,7 +109,7 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\basic\stdsize.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\Config.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\ConfigurationFactory.h" />
-    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\IMessage.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\MessageBase.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Message.h" />
   </ItemGroup>

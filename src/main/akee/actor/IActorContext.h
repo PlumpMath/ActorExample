@@ -6,26 +6,44 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
 #include <string>
 
+#include "akee/actor/Props.h"
+#include "akee/actor/ActorRef.h"
+#include "akee/actor/ActorSystem.h"
 #include "akee/actor/IActorRefFactory.h"
 
 namespace akee {
 
-class IActorRef;
-class ActorSystem;
-
 class IActorContext : public IActorRefFactory {
+#if 0
 private:
     IActorRef * self_;
     IActorRef * sender_;
     ActorSystem * system_;
+    IActorRef * parent_;
+    IActorRef * child_;
+#endif
 
 public:
-    virtual IActorRef * getSelf() const { return self_; }
-    virtual IActorRef * getSender() const { return sender_; }
-    virtual ActorSystem * getSystem() const { return system_; }
+    virtual IActorRef * getProps() const = 0;
+    virtual IActorRef * getSelf() const = 0;
+    virtual IActorRef * getSender() const = 0;
+    virtual ActorSystem * getSystem() const = 0;
+    virtual IActorRef * getParent() const = 0;
+    virtual IActorRef * getChild() const = 0;
+
+#if 0
+    virtual IActorRef * actorOf(const Props & props, const std::string & name = "") const {
+        ActorRef * actorNew = ActorSystem::findActor(props, name);
+        if (actorNew) {
+            //
+        }
+        return actorNew;
+    }
+#endif
+
+    virtual void stop(IActorRef * child) = 0;
 };
 
 }  /* namespace akee */

@@ -66,6 +66,10 @@ public:
         name_ = name;
     }
 
+    IActorContext * getContext() const {
+        return context_;
+    }
+
     int start() {
         return 0;
     }

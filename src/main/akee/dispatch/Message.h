@@ -9,14 +9,23 @@
 #include <string>
 
 #include "akee/basic/stddef.h"
-#include "akee/dispatch/IMessage.h"
+
+#include "akee/dispatch/MessageBase.h"
 
 namespace akee {
 
 class ActorPath;
 
-class Message : public IMessage {
+class Message : public MessageBase {
+private:
     //
+
+public:
+    Message() : MessageBase() {
+        //
+    }
+
+    ~Message() { }
 };
 
 }  /* namespace akee */

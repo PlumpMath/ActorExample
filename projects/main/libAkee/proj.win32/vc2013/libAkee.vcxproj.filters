@@ -84,9 +84,6 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorContext.h">
       <Filter>src\actor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActor.h">
-      <Filter>src\actor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRef.h">
       <Filter>src\actor</Filter>
     </ClInclude>
@@ -96,13 +93,25 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h">
       <Filter>src\dispatch</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\IMessage.h">
-      <Filter>src\dispatch</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\Akee\all.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorRef.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\MessageBase.h">
+      <Filter>src\dispatch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Props.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Deploy.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorPath.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActorRef.h">
       <Filter>src\actor</Filter>
     </ClInclude>
   </ItemGroup>

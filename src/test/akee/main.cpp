@@ -38,8 +38,7 @@ int main(int argn, char * argv[])
     class foo foo;
     foo.test();
 
-    Pi pi;
-    pi.calculate(0, 10000, 10000);
+    Pi::main(argn, argv);
 
     //int numOfWorkers = 4;
     //WorkerRouter workerRouter = actorSystem->getContext().actorOf(new Props(Worker.class()).withRouter(new RoundRobinRounter(numOfWorkers)));

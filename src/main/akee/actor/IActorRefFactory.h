@@ -6,20 +6,21 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
 #include <string>
+
+#include "akee/actor/IActorRef.h"
+#include "akee/actor/ActorPath.h"
+#include "akee/actor/Props.h"
 
 namespace akee {
 
-class IActorRef;
-class Props;
 class ActorSelection;
-class ActorPath;
 
-struct IActorRefFactory {
-    virtual IActorRef * actorOf(const Props & props, const std::string & name = "") = 0;
-    virtual ActorSelection * getActorSelection(const ActorPath & actorPath) = 0;;
-    virtual ActorSelection * getActorSelection(const std::string & actorPath) = 0;;
+class IActorRefFactory {
+public:
+    virtual IActorRef * actorOf(const Props & props, const std::string & name = "") const = 0;
+    virtual ActorSelection * getActorSelection(const ActorPath & actorPath) const = 0;;
+    virtual ActorSelection * getActorSelection(const std::string & actorPath) const = 0;;
 };
 
 }  /* namespace akee */

@@ -18,17 +18,142 @@
 #include <akee/actor/IActorContext.h>
 #include <akee/actor/ActorBase.h>
 
+#include <akee/actor/ActorPath.h>
+
 namespace akee {
 
 class ActorRef;
+
+class IActorRefScope {
+private:
+    bool isLocal_;
+
+public:
+    IActorRefScope() : isLocal_(false) {
+    }
+
+    IActorRefScope(bool isLocal) : isLocal_(isLocal) {
+    }
+
+    virtual bool isLocal() const { return isLocal_; }
+};
+
+class ILocalRef : public IActorRefScope {
+public:
+    ILocalRef() : IActorRefScope(true) {
+    }
+
+    ILocalRef(bool isLocal) : IActorRefScope(isLocal) {
+    }
+
+    bool isLocal() const { return true; }
+};
+
+class IRepointableRef : public IActorRefScope {
+private:
+    bool isStarted_;
+
+public:
+    IRepointableRef(bool isStarted, bool isLocal)
+        : IActorRefScope(isLocal),
+          isStarted_(isStarted) {
+    }
+
+    IRepointableRef(bool isStarted)
+        : IActorRefScope(),
+          isStarted_(isStarted) {
+    }
+
+    virtual bool isStarted() const { return isStarted_; }
+};
+
+class IActorRefProvider;
+
+class MinimalActorRef {};
+
+class Nobody : public MinimalActorRef {
+public:
+    static Nobody * instance_;
+
+private:
+    ActorPath * path_;
+
+private:
+    Nobody() : path_(NULL) {
+        path_ = new RootActorPath("/Nobody");
+    }
+
+public:
+    ~Nobody() { }
+
+public:
+    static void initNobody() {
+        instance_ = new Nobody();
+    }
+
+    static Nobody * getInstance() {
+        return instance_;
+    }
+
+    ActorPath * getPath() const { return path_; }
+    IActorRefProvider * getProvider() const { return 0; }
+};
+
+class ActorRefs {
+public:
+    static Nobody * nobody_;
+    static IActorRef * nosender_;
+
+public:
+    static void initActorRefs() {
+        nobody_ = Nobody::getInstance();
+        nosender_ = nullptr;
+    }
+
+    static Nobody * getNobody() {
+        return nobody_;
+    }
+
+    static IActorRef * getNoSender() {
+        return nosender_;
+    }
+};
 
 class ITellable {
 public:
     virtual void tell(void * func, const ActorRef & result) = 0;
 };
 
-class ActorRef : public ActorBase,
-                 public IActorRef,
+class ActorRefBase : public IActorRef {
+private:
+    ActorPath * path_;
+
+public:
+    virtual ActorPath * getPath() const {
+        return path_;
+    }
+};
+
+class IActorRefProvider;
+
+class InternalActorRefBase : public ActorRefBase, public IInternalActorRef {
+private:
+    IActorContext *     context_;
+    IInternalActorRef * parent_;
+    IActorRefProvider * provider_;
+
+public:
+    InternalActorRefBase() {}
+
+    virtual IInternalActorRef * getParent() const { return parent_; }
+    virtual IActorRefProvider * getProvider() const { return provider_; }
+
+    virtual IActorContext * getContext() const {
+        return context_;
+    }
+};
+
+class ActorRef : public ActorRefBase,
                  public ITellable {
 private:
     std::string name_;
@@ -36,7 +161,7 @@ private:
     IActorContext * context_;
 
 public:
-    ActorRef() {
+    ActorRef() : ActorRefBase() {
         initActorRef("default", ConfigurationFactory::load());
     }
 

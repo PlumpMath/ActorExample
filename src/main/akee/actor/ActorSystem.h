@@ -11,6 +11,8 @@
 
 #include "akee/config/Config.h"
 #include "akee/config/ConfigurationFactory.h"
+#include "akee/actor/ActorRef.h"
+#include "akee/actor/Props.h"
 
 namespace akee {
 
@@ -44,6 +46,10 @@ public:
 
     static ActorSystem * create(const std::string & name, const Config & config) {
         return createAndStartSystem(name, config);
+    }
+
+    static ActorRef * findActor(const Props & props, const std::string & name) {
+        return nullptr;
     }
 
     std::string getName() const {
