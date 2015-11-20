@@ -11,10 +11,11 @@
 
 //#define AKEE_USE_STATICLIB
 #include <akee/all.h>
-#include <akee/actor/ActorSystem.h>
 #include <akee/actor/ActorBase.h>
 #include <akee/actor/Actor.h>
 #include <akee/actor/ActorRef.h>
+#include "akee/actor/IActorContext.h"
+#include <akee/actor/ActorSystem.h>
 #include <akee/dispatch/Message.h>
 
 using namespace akee;
@@ -152,7 +153,7 @@ public:
         this->numOfElements_ = numOfElements;
         this->listener_ = listener;
 
-        workerRouter_ = this->getContext()->actorOf(new Props<Worker>->withRouter(new RoundRobinRouter(numOfWorkers)),
+        workerRouter_ = this->getContext()->actorOf(new Props("")->withRouter(new RoundRobinRouter(numOfWorkers)),
             "workerRouter");
     }
 

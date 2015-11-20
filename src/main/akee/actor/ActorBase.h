@@ -54,9 +54,11 @@ protected:
     }
 
 public:
+    // IActorContext
     IActorRef * getSelf() const { return getContext()->getSelf(); }
     IActorRef * getSender() const { return getContext()->getSender(); }
     ActorSystem * getSystem() const { return getContext()->getSystem(); }
+    
     IActorContext * getContext() const { return context_; }
 
     // IInternalActor

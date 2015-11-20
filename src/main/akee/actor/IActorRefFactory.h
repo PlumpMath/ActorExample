@@ -8,12 +8,15 @@
 
 #include <string>
 
-#include "akee/actor/IActorRef.h"
-#include "akee/actor/ActorPath.h"
-#include "akee/actor/Props.h"
+//#include "akee/actor/IActorRef.h"
+//#include "akee/actor/ActorPath.h"
+//#include "akee/actor/Props.h"
 
 namespace akee {
 
+class IActorRef;
+class Props;
+class ActorPath;
 class ActorSelection;
 
 class IActorRefFactory {

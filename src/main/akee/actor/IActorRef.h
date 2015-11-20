@@ -6,11 +6,11 @@
 #pragma once
 #endif
 
-#include <akee/actor/ActorPath.h>
+//#include <akee/actor/ActorPath.h>
 
 namespace akee {
 
-//class ActorPath;
+class ActorPath;
 
 class IActorRef {
 public:

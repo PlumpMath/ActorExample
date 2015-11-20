@@ -6,17 +6,15 @@
 #pragma once
 #endif
 
-#include "akee/actor/IActorContext.h"
+//#include "akee/actor/IActorContext.h"
 
 namespace akee {
 
-//class IActorContext;
+class IActorContext;
 
 class IInternalActorRef {
 public:
-    IActorContext * getContext() const {
-        return nullptr;
-    }
+    virtual IActorContext * getContext() const = 0;
 };
 
 }  /* namespace akee */

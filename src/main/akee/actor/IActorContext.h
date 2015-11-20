@@ -8,12 +8,21 @@
 
 #include <string>
 
+#if 0
 #include "akee/actor/Props.h"
-#include "akee/actor/ActorRef.h"
+#include "akee/actor/IActorRef.h"
 #include "akee/actor/ActorSystem.h"
+#endif
+
 #include "akee/actor/IActorRefFactory.h"
 
 namespace akee {
+
+class Props;
+class IActorRef;
+class ActorSystem;
+class IActorRefFactory;
+class ActorSystem;
 
 class IActorContext : public IActorRefFactory {
 #if 0

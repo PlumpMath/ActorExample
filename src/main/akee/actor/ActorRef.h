@@ -6,19 +6,14 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
-
 #include <string>
 #include <iostream>
 
-#include <akee/config/Config.h>
-#include <akee/config/ConfigurationFactory.h>
-
+#include "akee/basic/stddef.h"
+#include <akee/actor/ActorPath.h>
 #include <akee/actor/IActorRef.h>
 #include <akee/actor/IActorContext.h>
 #include <akee/actor/ActorBase.h>
-
-#include <akee/actor/ActorPath.h>
 
 namespace akee {
 
@@ -96,7 +91,7 @@ public:
     }
 
     ActorPath * getPath() const { return path_; }
-    IActorRefProvider * getProvider() const { return 0; }
+    IActorRefProvider * getProvider() const { return nullptr; }
 };
 
 class ActorRefs {
@@ -105,7 +100,7 @@ public:
     static IActorRef * nosender_;
 
 public:
-    static void initActorRefs() {
+    static void staticInit() {
         nobody_ = Nobody::getInstance();
         nosender_ = nullptr;
     }
@@ -157,20 +152,15 @@ class ActorRef : public ActorRefBase,
                  public ITellable {
 private:
     std::string name_;
-    Config config_;
     IActorContext * context_;
 
 public:
     ActorRef() : ActorRefBase() {
-        initActorRef("default", ConfigurationFactory::load());
+        initActorRef("default");
     }
 
     ActorRef(const std::string & name) {
-        initActorRef(name, ConfigurationFactory::load());
-    }
-
-    ActorRef(const std::string & name, const Config & config) {
-        initActorRef(name, config);
+        initActorRef(name);
     }
 
     ActorRef(const ActorRef & src) {
@@ -181,9 +171,8 @@ public:
     }
 
 private:
-    void initActorRef(const std::string & name, const Config & config) {
+    void initActorRef(const std::string & name) {
         name_ = name;
-        config_ = config;
     }
 
 protected:
@@ -192,7 +181,6 @@ protected:
 
     void cloneActorRef(const ActorRef & src) {
         this->name_ = src.name_;
-        this->config_ = src.config_;
     }
 
 public:
