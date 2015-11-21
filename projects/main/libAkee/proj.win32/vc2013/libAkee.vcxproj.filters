@@ -34,6 +34,9 @@
     <Filter Include="src\routing">
       <UniqueIdentifier>{96eecb34-b1be-4f1e-bfc8-f02d14d9e183}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{dc953eda-5dbe-4587-b988-1dce48fd7ea5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h">
@@ -135,6 +138,12 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\MessageObject.h">
       <Filter>src\actor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RouterConfig.h">
+      <Filter>src\routing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\Runtime.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp">
@@ -148,9 +157,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp">
       <Filter>src\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\src\main\Akee\all.cpp">
-      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

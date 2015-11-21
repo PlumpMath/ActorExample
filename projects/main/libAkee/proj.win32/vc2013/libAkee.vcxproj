@@ -118,13 +118,14 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RoundRobinRouter.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\Router.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RouterConfig.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\Runtime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\Actor.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp" />
-    <ClCompile Include="..\..\..\..\..\src\main\Akee\all.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

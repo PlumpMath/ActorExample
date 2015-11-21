@@ -18,7 +18,9 @@ class ActorSelection;
 class IActorRefFactory {
 public:
     virtual IActorRef * actorOf(const Props & props, const std::string & name = "") const = 0;
+    virtual IActorRef * actorOf(const Props * props, const std::string & name = "") const = 0;
     virtual ActorSelection * getActorSelection(const ActorPath & actorPath) const = 0;
+    virtual ActorSelection * getActorSelection(const ActorPath * actorPath) const = 0;
     virtual ActorSelection * getActorSelection(const std::string & actorPath) const = 0;
 };
 

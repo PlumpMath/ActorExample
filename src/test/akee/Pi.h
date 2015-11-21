@@ -12,25 +12,19 @@
 //#define AKEE_USE_STATICLIB
 #include <akee/all.h>
 #include <akee/actor/Message.h>
+#include "akee/actor/IActorContext.h"
 #include <akee/actor/ActorBase.h>
 #include <akee/actor/Actor.h>
 #include <akee/actor/ActorRef.h>
 #include <akee/actor/UntypedActor.h>
-#include "akee/actor/IActorContext.h"
 #include <akee/actor/ActorSystem.h>
+#include "akee/routing/RouterConfig.h"
 #include <akee/routing/Router.h>
 #include <akee/routing/RoundRobinRouter.h>
 
+#include <akee/utils/Runtime.h>
+
 using namespace akee;
-
-namespace System {
-
-static
-int getAvailableProcessor() {
-    return 2;
-}
-
-}
 
 class Calulate {
     //
@@ -152,20 +146,45 @@ public:
         this->numOfElements_ = numOfElements;
         this->listener_ = listener;
 
-        akee::Router * rounter = new akee::RoundRobinRouter(numOfWorkers);
-        akee::RouterConfig * routerConfig = rounter->getRouterConfig();
-        akee::Deploy * deploy = new akee::Deploy("Master");
-        akee::Props * tmpProps = new akee::Props(*deploy, 0);
-        akee::Props * props = tmpProps->withRouter(routerConfig);
+        akee::Router * router = new akee::RoundRobinRouter(numOfWorkers);
+        if (router) {
+            akee::RouterConfig * routerConfig = router->getRouterConfig();
+            if (routerConfig) {
+                akee::Deploy * deploy = new akee::Deploy("Master");
+                if (deploy) {
+                    akee::Props * tmpProps = new akee::Props(deploy, 0);
+                    if (tmpProps) {
+                        akee::Props * props = tmpProps->withRouter(routerConfig);
+                        if (props) {
+                            workerRouter_ = this->getContext()->actorOf(props, "workerRouter");
+                            delete props;
+                        }
+                        delete tmpProps;
+                    }
+                    delete deploy;
+                }
+                delete routerConfig;
+            }
+            delete router;
+        }        
+    }
 
-        workerRouter_ = this->getContext()->actorOf(*props, "workerRouter");
+    ~Master() {
+        listener_ = nullptr;
+        if (workerRouter_) {
+            delete workerRouter_;
+            workerRouter_ = nullptr;
+        }
     }
 
     void onReceive(MessageBase * message) {
         message_type msgType = message->getType();
         if (msgType == LocalMessage::Calculate) {
-            for (int start = 0; start < numOfMessages_; start++) {
-                workerRouter_->tell(new Work(start, numOfElements_), this->getSelf());
+            if (workerRouter_) {
+                for (int start = 0; start < numOfMessages_; ++start) {
+                    Work work(start, numOfElements_);
+                    workerRouter_->tell(&work, this->getSelf());
+                }
             }
         }
         else if (msgType == LocalMessage::Result) {
@@ -190,16 +209,16 @@ public:
     Pi() {}
     ~Pi() {}
 
-    void calculate(int numOfWorkers, int numOfElement, int numOfMessagees) {
+    void calculate(int numOfWorkers, int numOfMessages, int numOfElements) {
         // Create an actor system
         ActorSystem * system = ActorSystem::create("PiSystem");
         if (system) {
 #if 0
             // Create the result listener, which will print the result and shutdown the system.
-            ActorRef * listener = system->actorOf(new Props(Listener.getClass(), "linstener");
+            IActorRef * listener = system->actorOf(new Props(Listener.getClass(), "linstener");
             if (listener) {
                 // Create the master
-                ActorRef * master = system->actorOf(new Props(new UntypedActorFactory()), "master");
+                IActorRef * master = system->actorOf(new Props(new UntypedActorFactory()), "master");
                 if (master) {
                     master->tell(new Calculate());
                 }
@@ -210,9 +229,10 @@ public:
 
     static void main(int argn, char * argv[]) {
         Pi * pi = new Pi();
-        int numOfProcessor = System::getAvailableProcessor();
+        int numOfProcessors = Runtime::getAvailableProcessors();
         if (pi) {
-            pi->calculate(numOfProcessor, 10000, 10000);
+            pi->calculate(numOfProcessors, 10000, 10000);
+            delete pi;
         }
     }
 };
