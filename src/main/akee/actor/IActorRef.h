@@ -6,13 +6,14 @@
 #pragma once
 #endif
 
-//#include <akee/actor/ActorPath.h>
+#include "akee/actor/ICanTell.h"
+#include "akee/actor/ISurrogated.h"
 
 namespace akee {
 
 class ActorPath;
 
-class IActorRef {
+class IActorRef : public ICanTell, public ISurrogated {
 public:
     virtual ActorPath * getPath() const = 0;
 };

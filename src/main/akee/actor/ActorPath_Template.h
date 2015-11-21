@@ -1,6 +1,6 @@
 
-#ifndef _AKEE_ACTOR_ACTORPATH_H_
-#define _AKEE_ACTOR_ACTORPATH_H_
+#ifndef _AKEE_ACTOR_ACTORPATHTEMPLATE_H_
+#define _AKEE_ACTOR_ACTORPATHTEMPLATE_H_
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -15,7 +15,7 @@ private:
     std::string path_;
 
 public:
-    ActorPath(std::string path) {
+    ActorPath(const std::string & path) {
         path_ = path;
     }
 
@@ -25,4 +25,4 @@ public:
 
 }  /* namespace akee */
 
-#endif  /* _AKEE_ACTOR_ACTORPATH_H_ */
+#endif  /* _AKEE_ACTOR_ACTORPATHTEMPLATE_H_ */

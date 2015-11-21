@@ -13,26 +13,19 @@
 #include <akee/config/ConfigurationFactory.h>
 
 #include <akee/actor/IActorContext.h>
+#include <akee/actor/ActorBase.h>
 
 namespace akee {
 
-class Actor {
+class Actor : public ActorBase {
 private:
-    std::string name_;
-    Config config_;
-    IActorContext * context_;
+    //
 
 public:
-    Actor() {
-        initActor("default", ConfigurationFactory::load());
+    Actor() : ActorBase() {
     }
 
-    Actor(const std::string & name) {
-        initActor(name, ConfigurationFactory::load());
-    }
-
-    Actor(const std::string & name, const Config & config) {
-        initActor(name, config);
+    Actor(const std::string & name) : ActorBase(name) {
     }
 
     Actor(const Actor & src) {
@@ -43,9 +36,8 @@ public:
     }
 
 private:
-    void initActor(const std::string & name, const Config & config) {
-        name_ = name;
-        config_ = config;
+    void initActor(const std::string & name) {
+        this->name_ = name;
     }
 
 protected:
@@ -54,20 +46,15 @@ protected:
 
     void cloneActor(const Actor & src) {
         this->name_ = src.name_;
-        this->config_ = src.config_;
     }
 
 public:
     std::string getName() const {
-        return name_;
+        return this->name_;
     }
 
     void setName(const std::string & name) {
-        name_ = name;
-    }
-
-    IActorContext * getContext() const {
-        return context_;
+        this->name_ = name;
     }
 
     int start() {

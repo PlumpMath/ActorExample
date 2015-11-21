@@ -176,9 +176,6 @@ private:
     }
 
 protected:
-    ActorRef * createActorRef(const std::string & name, const Config & config);
-    ActorRef * createAndStartActorRef(const std::string & name, const Config & config);
-
     void cloneActorRef(const ActorRef & src) {
         this->name_ = src.name_;
     }

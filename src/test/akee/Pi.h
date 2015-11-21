@@ -11,12 +11,15 @@
 
 //#define AKEE_USE_STATICLIB
 #include <akee/all.h>
+#include <akee/actor/Message.h>
 #include <akee/actor/ActorBase.h>
 #include <akee/actor/Actor.h>
 #include <akee/actor/ActorRef.h>
+#include <akee/actor/UntypedActor.h>
 #include "akee/actor/IActorContext.h"
 #include <akee/actor/ActorSystem.h>
-#include <akee/dispatch/Message.h>
+#include <akee/routing/Router.h>
+#include <akee/routing/RoundRobinRouter.h>
 
 using namespace akee;
 
@@ -96,38 +99,27 @@ double calulatePiFor(int start, int numOfElements) {
     return acc;
 }
 
-class UntypedActor : public akee::Actor {
-private:
-    // 
-public:
-    ActorRef & getSender() const {
-        //
-    }
-
-    ActorRef & getSelf() const {
-        //
-    }
-};
-
 class Worker : public UntypedActor {
 protected:
-    enum {
-        MESSAGE_WORK
+    struct LocalMessage {
+        enum {
+            Work
+        };
     };
 
 public:
     void onReceive(MessageBase * message) {
         message_type msgType = message->getType();
-        if (msgType == MESSAGE_WORK) {
+        if (msgType == LocalMessage::Work) {
             //Work * work = dynamic_cast<Work *>(message->getObject());
             Work * work = reinterpret_cast<Work *>(message->getObject());
             if (work) {
                 double result = calulatePiFor(work->getStart(), work->getNumOfElements());
-                this->getSender().tell((void *)new Result(result), getSelf());
+                this->getSender()->tell((MessageObject)new Result(result), getSelf());
             }
         }
         else {
-            // UnHandle(message);
+            Unhandle(message);
         }
     }
 };
@@ -138,37 +130,49 @@ private:
     int numOfMessages_;
     int numOfElements_;
 
-    ActorRef * listener_;
-    ActorRef * workerRouter_;
+    IActorRef * listener_;
+    IActorRef * workerRouter_;
 
 protected:
     enum {
         MESSAGE_CALCULATE,
         MESSAGE_RESULT
     };
+    struct LocalMessage {
+        enum {
+            Calculate,
+            Result
+        };
+    };
 
 public:
-    Master(int numOfWorkers, int numOfMessages, int numOfElements, ActorRef * listener) {
+    Master(int numOfWorkers, int numOfMessages, int numOfElements, ActorRef * listener)
+        : UntypedActor() {
         this->numOfMessages_ = numOfMessages;
         this->numOfElements_ = numOfElements;
         this->listener_ = listener;
 
-        workerRouter_ = this->getContext()->actorOf(new Props("")->withRouter(new RoundRobinRouter(numOfWorkers)),
-            "workerRouter");
+        akee::Router * rounter = new akee::RoundRobinRouter(numOfWorkers);
+        akee::RouterConfig * routerConfig = rounter->getRouterConfig();
+        akee::Deploy * deploy = new akee::Deploy("Master");
+        akee::Props * tmpProps = new akee::Props(*deploy, 0);
+        akee::Props * props = tmpProps->withRouter(routerConfig);
+
+        workerRouter_ = this->getContext()->actorOf(*props, "workerRouter");
     }
 
-    void onReceive(MessageBase *message) {
+    void onReceive(MessageBase * message) {
         message_type msgType = message->getType();
-        if (msgType == MESSAGE_CALCULATE) {
+        if (msgType == LocalMessage::Calculate) {
             for (int start = 0; start < numOfMessages_; start++) {
-                workerRouter_.tell(new Work(start, numOfElements_), getSelf());
+                workerRouter_->tell(new Work(start, numOfElements_), this->getSelf());
             }
         }
-        else if (msgType == MESSAGE_CALCULATE) {
+        else if (msgType == LocalMessage::Result) {
             //
         }
         else {
-            // UnHandle(message);
+            Unhandle(message);
         }
     }
 };

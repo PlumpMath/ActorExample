@@ -12,13 +12,20 @@
 
 namespace akee {
 
+class RouterConfig;
+
 class Deploy {
 private:
     std::string name_;
+    RouterConfig * routerConfig_;
 
 public:
     Deploy() {
         initDeploy("default");
+    }
+
+    Deploy(const RouterConfig * routerConfig) {
+        initDeploy(routerConfig);
     }
 
     Deploy(const std::string & name) {
@@ -33,6 +40,10 @@ public:
     }
 
 private:
+    void initDeploy(const RouterConfig * routerConfig) {
+        routerConfig_ = const_cast<RouterConfig *>(routerConfig);
+    }
+
     void initDeploy(const std::string & name) {
         name_ = name;
     }
@@ -53,6 +64,10 @@ public:
 
     void setName(const std::string & name) {
         name_ = name;
+    }
+
+    Deploy * withRouterConfig(const RouterConfig * routerConfig) {
+        routerConfig_ = const_cast<RouterConfig *>(routerConfig);
     }
 };
 

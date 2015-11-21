@@ -12,6 +12,8 @@
 
 namespace akee {
 
+class Router;
+
 class Props {
 private:
     std::string name_;
@@ -34,6 +36,11 @@ protected:
 public:
     Props(const Deploy & deploy, uint32_t inputType) {
         *deploy_ = deploy;
+        inputType_ = inputType;
+    }
+
+    Props(const Deploy * deploy, uint32_t inputType) {
+        deploy_ = const_cast<Deploy * >(deploy);
         inputType_ = inputType;
     }
 
@@ -65,6 +72,15 @@ public:
 
     void setName(const std::string & name) {
         name_ = name;
+    }
+
+    Props * withRouter(const RouterConfig * routerConfig) {
+        Props * copy = new Props();
+        if (copy) {
+            copy->copyProps(*this);
+            copy->deploy_ = new Deploy(routerConfig);
+        }
+        return copy;
     }
 
 protected:

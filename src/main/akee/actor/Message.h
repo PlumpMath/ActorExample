@@ -1,6 +1,6 @@
 
-#ifndef _AKEE_DISPATCH_MESSAGE_H_
-#define _AKEE_DISPATCH_MESSAGE_H_
+#ifndef _AKEE_ACTOR_MESSAGE_H_
+#define _AKEE_ACTOR_MESSAGE_H_
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -9,8 +9,7 @@
 #include <string>
 
 #include "akee/basic/stddef.h"
-
-#include "akee/dispatch/MessageBase.h"
+#include "akee/actor/MessageBase.h"
 
 namespace akee {
 
@@ -30,4 +29,4 @@ public:
 
 }  /* namespace akee */
 
-#endif  /* _AKEE_DISPATCH_MESSAGE_H_ */
+#endif  /* _AKEE_ACTOR_MESSAGE_H_ */

@@ -1,6 +1,6 @@
 
-#ifndef _AKEE_DISPATCH_MESSAGEBASE_H_
-#define _AKEE_DISPATCH_MESSAGEBASE_H_
+#ifndef _AKEE_ACTOR_MESSAGEBASE_H_
+#define _AKEE_ACTOR_MESSAGEBASE_H_
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -10,6 +10,7 @@
 #include <string>
 
 #include "akee/actor/ActorRef.h"
+#include "akee/actor/MessageObject.h"
 
 namespace akee {
 
@@ -29,10 +30,10 @@ enum  {
 class MessageBase {
 private:
     message_type type_;
-    void * object_;
+    MessageObject object_;
 
-    ActorRef * sender_;
-    ActorRef * receiver_;
+    IActorRef * sender_;
+    IActorRef * receiver_;
 
 public:
     MessageBase() : type_(UNKNOWN_MESSAGE),
@@ -47,19 +48,19 @@ public:
         return type_;
     }
 
-    void * getObject() const {
+    MessageObject getObject() const {
         return object_;
     }
 
-    ActorRef * getSender() const {
+    IActorRef * getSender() const {
         return sender_;
     }
 
-    ActorRef * getReceiver() const {
+    IActorRef * getReceiver() const {
         return receiver_;
     }
 };
 
 }  /* namespace akee */
 
-#endif  /* _AKEE_DISPATCH_MESSAGEBASE_H_ */
+#endif  /* _AKEE_ACTOR_MESSAGEBASE_H_ */

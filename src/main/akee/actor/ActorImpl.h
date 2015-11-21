@@ -25,11 +25,6 @@ public:
         //
     }
 
-    ActorImpl(const std::string & name, const Config & config)
-        : Actor(name, config) {
-        //
-    }
-
     ~ActorImpl() {
     }
 

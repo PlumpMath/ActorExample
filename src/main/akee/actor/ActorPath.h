@@ -16,7 +16,7 @@ private:
     std::string path_;
 
 public:
-    ActorPath(std::string path) {
+    ActorPath(const std::string & path) {
         path_ = path;
     }
 

@@ -6,9 +6,10 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
 #include <string>
+#include <iostream>
 
+#include "akee/basic/stddef.h"
 #include <akee/actor/IInternalActorRef.h>
 #include <akee/actor/IActorContext.h>
 #include <akee/actor/IActorRef.h>
@@ -23,7 +24,7 @@ public:
 };
 
 class ActorBase : public IInternalActor {
-private:
+protected:
     std::string name_;
     IActorContext * context_;
 
@@ -55,11 +56,16 @@ protected:
 
 public:
     // IActorContext
+    Props * getProps() const { return getContext()->getProps(); }
     IActorRef * getSelf() const { return getContext()->getSelf(); }
     IActorRef * getSender() const { return getContext()->getSender(); }
+    IActorRef * getParent() const { return getContext()->getParent(); }
+    IActorRef * getChild() const { return getContext()->getChild(); }
     ActorSystem * getSystem() const { return getContext()->getSystem(); }
     
+    // For call IActorContext
     IActorContext * getContext() const { return context_; }
+    void setContext(IActorContext * context) { context_ = context; }
 
     // IInternalActor
     virtual IActorContext * getActorContext() const {
@@ -72,6 +78,12 @@ public:
 
     void setName(const std::string & name) {
         name_ = name;
+    }
+
+    void Unhandle(MessageObject message) {
+        std::cout << ">>> Unhandle Message <<<" << std::endl;
+        std::cout << "Message Object: " << message << "." << std::endl;
+        std::cout << ">>> ---------------- <<<" << std::endl;
     }
 };
 

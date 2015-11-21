@@ -8,12 +8,6 @@
 
 #include <string>
 
-#if 0
-#include "akee/actor/Props.h"
-#include "akee/actor/IActorRef.h"
-#include "akee/actor/ActorSystem.h"
-#endif
-
 #include "akee/actor/IActorRefFactory.h"
 
 namespace akee {
@@ -35,12 +29,29 @@ private:
 #endif
 
 public:
-    virtual IActorRef * getProps() const = 0;
+    // IActorRefFactory
+#if 0
+    virtual IActorRef * actorOf(const Props & props, const std::string & name = "") const = 0;
+    virtual ActorSelection * getActorSelection(const ActorPath & actorPath) const = 0;
+    virtual ActorSelection * getActorSelection(const std::string & actorPath) const = 0;
+#endif
+
+    // IActorContext
+    virtual Props * getProps() const = 0;
     virtual IActorRef * getSelf() const = 0;
     virtual IActorRef * getSender() const = 0;
-    virtual ActorSystem * getSystem() const = 0;
     virtual IActorRef * getParent() const = 0;
     virtual IActorRef * getChild() const = 0;
+    virtual ActorSystem * getSystem() const = 0;
+
+    virtual void setProps(Props * props) const = 0;
+    virtual void setSelf(IActorRef * self) const = 0;
+    virtual void setSender(IActorRef * sender) const = 0;
+    virtual void setParent(IActorRef * parent) const = 0;
+    virtual void setChild(IActorRef * child) const = 0;
+    virtual void setSystem(ActorSystem * system) const = 0;
+
+    virtual void stop(IActorRef * child) = 0;
 
 #if 0
     virtual IActorRef * actorOf(const Props & props, const std::string & name = "") const {
@@ -51,8 +62,6 @@ public:
         return actorNew;
     }
 #endif
-
-    virtual void stop(IActorRef * child) = 0;
 };
 
 }  /* namespace akee */
