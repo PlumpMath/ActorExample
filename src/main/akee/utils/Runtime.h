@@ -20,6 +20,14 @@ namespace akee {
 
 namespace Runtime {
 
+/* 
+ * - _SC_NPROCESSORS_CONF
+ *       The number of processors configured.
+ * 
+ * - _SC_NPROCESSORS_ONLN
+ *       The number of processors currently online (available).
+ */
+
 static
 int getAvailableProcessors() {
 #if defined(_WIN32) || defined(_WIN64) || defined(_WINDOWS) || defined(WINDOWS)
