@@ -38,13 +38,11 @@ int main(int argn, char * argv[])
     class foo foo;
     foo.test();
 
-    Pi::main(argn, argv);
-
-    //int numOfWorkers = 4;
-    //WorkerRouter workerRouter = actorSystem->getContext().actorOf(new Props(Worker.class()).withRouter(new RoundRobinRounter(numOfWorkers)));
-
     if (actorSystem)
         delete actorSystem;
+
+    Pi::main(argn, argv);
+
     system("pause");
     return 0;
 }
