@@ -37,6 +37,9 @@
     <Filter Include="src\utils">
       <UniqueIdentifier>{dc953eda-5dbe-4587-b988-1dce48fd7ea5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scheduler">
+      <UniqueIdentifier>{7088fa32-1270-4c87-bb23-6afbd46d0e7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h">
@@ -143,6 +146,30 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\utils\Runtime.h">
       <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IDisposable.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IScheduler.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\ITellScheduler.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IAdvancedScheduler.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\ITimeProvider.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IActionScheduler.h">
+      <Filter>src\scheduler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ExtendedActorSystem.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemFactory.h">
+      <Filter>src\actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,17 +6,20 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
 #include <string>
 
+#include "akee/basic/stddef.h"
 #include "akee/config/Config.h"
 #include "akee/config/ConfigurationFactory.h"
 #include "akee/actor/ActorRef.h"
 #include "akee/actor/Props.h"
+#include "akee/actor/IActorRefFactory.h"
+#include "akee/actor/IDisposable.h"
+#include "akee/actor/ActorSystemFactory.h"
 
 namespace akee {
 
-class ActorSystem {
+class ActorSystem : public IActorRefFactory, public IDisposable {
 private:
     std::string name_;
     Config config_;
@@ -37,7 +40,10 @@ private:
     }
 
 protected:
-    static ActorSystem * createAndStartSystem(const std::string & name, const Config & withFallBack);
+    static ActorSystem * createAndStartSystem(const std::string & name, const Config & withFallBack) {
+        //return inlineCreateAndStartSystem(name, withFallBack);
+        return nullptr;
+    }
 
 public:
     static ActorSystem * create(const std::string & name) {
@@ -48,7 +54,7 @@ public:
         return createAndStartSystem(name, config);
     }
 
-    static ActorRef * findActor(const Props & props, const std::string & name) {
+    static IActorRef * findActor(const Props & props, const std::string & name) {
         return nullptr;
     }
 
@@ -60,19 +66,23 @@ public:
         name_ = name;
     }
 
+    int create() {
+        return 0;
+    }
+
     // Startup the actor systems
     int start() {
         return 0;
+    }
+
+    void shutdown() {
+        //
     }
 };
 
 }  /* namespace akee */
 
- AKEE_API int only_test_for_api_export() {
-    // Do nothing!!
-    printf("Only test for api export.\n");
-    return 0;
-}
+#if 0
 
 #ifndef DEF_ACTORSYSTEM_NOINLINE
 
@@ -89,6 +99,8 @@ ActorSystem * ActorSystem::createAndStartSystem(const std::string & name, const 
 }
 
 }  /* namespace akee */
+
+#endif
 
 #endif
 

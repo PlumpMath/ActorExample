@@ -18,6 +18,7 @@
 #include <akee/actor/ActorRef.h>
 #include <akee/actor/UntypedActor.h>
 #include <akee/actor/ActorSystem.h>
+#include <akee/actor/ActorSystemFactory.h>
 #include "akee/routing/RouterConfig.h"
 #include <akee/routing/Router.h>
 #include <akee/routing/RoundRobinRouter.h>
@@ -128,10 +129,6 @@ private:
     IActorRef * workerRouter_;
 
 protected:
-    enum {
-        MESSAGE_CALCULATE,
-        MESSAGE_RESULT
-    };
     struct LocalMessage {
         enum {
             Calculate,
@@ -196,12 +193,28 @@ public:
     }
 };
 
-class WorkerRouter;
-class RoundRobinRounter;
-class Props {
+class Linstener : public UntypedActor {
+protected:
+    struct LocalMessage {
+        enum {
+            PiApproximation
+        };
+    };
 public:
-    Props() {}
-    Props(std::string name) {}
+    void OnReceive(MessageObject message) {
+        if (LocalMessage::PiApproximation) {
+            PiApproximation * approximation = reinterpret_cast<PiApproximation *>(message);
+            if (approximation) {
+                std::cout << std::endl << "Pi approximation: \t\t" << approximation->getPi()
+                    << "\n\tCalculation time: \t" << approximation->getDuration();
+                this->getContext()->getSystem()->shutdown();
+                delete approximation;
+            }
+        }
+        else {
+            Unhandle(message);
+        }
+    }
 };
 
 class Pi {
@@ -211,7 +224,7 @@ public:
 
     void calculate(int numOfWorkers, int numOfMessages, int numOfElements) {
         // Create an actor system
-        ActorSystem * system = ActorSystem::create("PiSystem");
+        ActorSystem * system = ActorSystemFactory::create("PiSystem");
         if (system) {
 #if 0
             // Create the result listener, which will print the result and shutdown the system.

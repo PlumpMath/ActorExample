@@ -91,12 +91,15 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorPath.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorRef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemFactory.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Deploy.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ExtendedActorSystem.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorContext.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRefFactory.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ICanTell.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IDisposable.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IInternalActorRef.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ISurrogated.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\Message.h" />
@@ -119,6 +122,11 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RoundRobinRouter.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\Router.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RouterConfig.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IActionScheduler.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IAdvancedScheduler.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IScheduler.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\ITellScheduler.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\ITimeProvider.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\utils\Runtime.h" />
   </ItemGroup>
   <ItemGroup>

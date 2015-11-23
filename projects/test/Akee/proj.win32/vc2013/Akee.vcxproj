@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\test\akee\main.cpp" />
-    <ClCompile Include="..\..\..\..\..\src\test\akee\Pi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\test\akee\Pi.h" />

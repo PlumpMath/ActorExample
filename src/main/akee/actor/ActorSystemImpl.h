@@ -9,20 +9,28 @@
 #include "akee/basic/stddef.h"
 #include <string>
 
-//#include <akee/actor/ActorSystem.h>
+#include <akee/actor/ExtendedActorSystem.h>
 #include <akee/config/Config.h>
 #include <akee/config/ConfigurationFactory.h>
 
 namespace akee {
 
-class ActorSystemImpl : public ActorSystem {
+class ActorSystem;
+class Props;
+class IActorRef;
+class ActorSelection;
+class ActorPath;
+class IActorRefProvider;
+class IInternalActorRef;
+
+class ActorSystemImpl : public ExtendedActorSystem {
 public:
-	ActorSystemImpl(const std::string & name) : ActorSystem(name) {
+	ActorSystemImpl(const std::string & name) : ExtendedActorSystem(name) {
 		//
 	}
 
 	ActorSystemImpl(const std::string & name, const Config & config)
-		: ActorSystem(name, config) {
+		: ExtendedActorSystem(name, config) {
 		//
 	}
 
@@ -32,6 +40,54 @@ public:
 protected:
 	ActorSystem * createSystemImpl(const std::string & name, const Config & config);
 	ActorSystem * createAndStartSystemImpl(const std::string & name, const Config & config);
+
+public:
+    // IActorRefFactory
+    IActorRef * actorOf(const Props & props, const std::string & name = "") {
+        return nullptr;
+    }
+
+    IActorRef * actorOf(const Props * props, const std::string & name = "") {
+        return nullptr;
+    }
+
+    ActorSelection * getActorSelection(const ActorPath & actorPath) const {
+        return nullptr;
+    }
+
+    ActorSelection * getActorSelection(const ActorPath * actorPath) const {
+        return nullptr;
+    }
+
+    ActorSelection * getActorSelection(const std::string & actorPath) const {
+        return nullptr;
+    }
+
+    // IDisposable
+    void Dispose() {
+        //
+    }
+
+    // ExtendedActorSystem
+    IActorRefProvider * getProvider() const {
+        //
+        return nullptr;
+    }
+
+    IInternalActorRef * getGuardian() const {
+        //
+        return nullptr;
+    }
+
+    IInternalActorRef * getSystemGuardian() const {
+        //
+        return nullptr;
+    }
+
+    IActorRef * systemActorOf(const Props * props, const std::string & name) {
+        //
+        return nullptr;
+    }
 };
 
 }  /* namespace akee */
