@@ -12,14 +12,14 @@
 //#define AKEE_USE_STATICLIB
 #include <akee/all.h>
 #include <akee/actor/Message.h>
-#include "akee/actor/IActorContext.h"
+#include <akee/actor/IActorContext.h>
 #include <akee/actor/ActorBase.h>
 #include <akee/actor/Actor.h>
 #include <akee/actor/ActorRef.h>
 #include <akee/actor/UntypedActor.h>
 #include <akee/actor/ActorSystem.h>
 #include <akee/actor/ActorSystemFactory.h>
-#include "akee/routing/RouterConfig.h"
+#include <akee/routing/RouterConfig.h>
 #include <akee/routing/Router.h>
 #include <akee/routing/RoundRobinRouter.h>
 
