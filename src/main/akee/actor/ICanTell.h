@@ -14,7 +14,7 @@ class IActorRef;
 
 class ICanTell {
 public:
-    virtual void tell(MessageObject message, IActorRef * sender) const = 0;
+    virtual void tell(MessageObject message, const IActorRef * sender = nullptr) const = 0;
 };
 
 }  /* namespace akee */

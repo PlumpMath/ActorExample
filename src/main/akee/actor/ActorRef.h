@@ -10,10 +10,10 @@
 #include <iostream>
 
 #include "akee/basic/stddef.h"
-#include <akee/actor/ActorPath.h>
-#include <akee/actor/IActorRef.h>
-#include <akee/actor/IActorContext.h>
-#include <akee/actor/ActorBase.h>
+#include "akee/actor/ActorPath.h"
+#include "akee/actor/IActorRef.h"
+#include "akee/actor/IActorContext.h"
+#include "akee/actor/ActorBase.h"
 
 namespace akee {
 
@@ -116,7 +116,7 @@ public:
 
 class ITellable {
 public:
-    virtual void tell(void * func, const ActorRef & result) = 0;
+    virtual void tell(void * func, const IActorRef * result = nullptr) = 0;
 };
 
 class ActorRefBase : public IActorRef {
@@ -194,7 +194,7 @@ public:
         name_ = name;
     }
 
-    void tell(void * func, const ActorRef & result) const {
+    void tell(void * func, const IActorRef * result) const {
         std::cout << "ActorRef::tell();" << std::endl;
     }
 

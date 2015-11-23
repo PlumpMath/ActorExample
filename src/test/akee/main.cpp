@@ -9,17 +9,6 @@
 
 #include "Pi.h"
 
-class foo {
-public:
-    void test() {
-        std::cout << "foo::test();" << std::endl;
-    }
-
-    static void bar() {
-        std::cout << "foo::bar();" << std::endl;
-    }
-};
-
 int main(int argn, char * argv[])
 {
     only_test_for_api_export();
@@ -34,9 +23,6 @@ int main(int argn, char * argv[])
     printf("Welcome to use Akee!\n", 0);
     printf("ActorSystem Name: %s.\n", systemName.c_str());
     printf("\n");
-
-    class foo foo;
-    foo.test();
 
     if (actorSystem)
         delete actorSystem;

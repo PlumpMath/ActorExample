@@ -8,6 +8,7 @@
 #endif
 
 #include "akee/basic/stddef.h"
+#include "akee/config/Config.h"
 
 namespace akee {
 

@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\Actor.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.cpp" />
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemFactory.cpp" />
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,6 +13,7 @@
 namespace akee {
 
 class Router;
+class Actor;
 
 class Props {
 private:
@@ -42,6 +43,11 @@ public:
     Props(const Deploy * deploy, uint32_t inputType) {
         deploy_ = const_cast<Deploy * >(deploy);
         inputType_ = inputType;
+    }
+
+    Props(const Actor * actor) {
+        deploy_ = nullptr;
+        inputType_ = 0;
     }
 
     ~Props() {

@@ -25,9 +25,11 @@
 
 #include <akee/utils/Runtime.h>
 
+#include <akee/actor/ActorSystemFactory.cpp>
+
 using namespace akee;
 
-class Calulate {
+class Calculate {
     //
 };
 
@@ -217,6 +219,12 @@ public:
     }
 };
 
+class UntypedActorFactory : public UntypedActor {
+public:
+    UntypedActorFactory() {}
+    ~UntypedActorFactory() {}
+};
+
 class Pi {
 public:
     Pi() {}
@@ -226,9 +234,9 @@ public:
         // Create an actor system
         ActorSystem * system = ActorSystemFactory::create("PiSystem");
         if (system) {
-#if 0
+#if 1
             // Create the result listener, which will print the result and shutdown the system.
-            IActorRef * listener = system->actorOf(new Props(Listener.getClass(), "linstener");
+            IActorRef * listener = system->actorOf(new Props(new Linstener()), "linstener");
             if (listener) {
                 // Create the master
                 IActorRef * master = system->actorOf(new Props(new UntypedActorFactory()), "master");

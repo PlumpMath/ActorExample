@@ -185,5 +185,8 @@
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp">
       <Filter>src\actor</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemFactory.cpp">
+      <Filter>src\actor</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
