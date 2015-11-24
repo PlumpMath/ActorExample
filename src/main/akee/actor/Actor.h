@@ -41,9 +41,6 @@ private:
     }
 
 protected:
-    Actor * createActor(const std::string & name, const Config & config);
-    Actor * createAndStartActor(const std::string & name, const Config & config);
-
     void cloneActor(const Actor & src) {
         this->name_ = src.name_;
     }

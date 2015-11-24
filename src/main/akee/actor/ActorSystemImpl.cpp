@@ -4,14 +4,6 @@
 #include "akee/actor/ActorSystem.h"
 #include "akee/actor/ActorSystemImpl.h"
 
-akee::ActorSystem * inlineCreateAndStartSystem(const std::string & name, const akee::Config & withFallBack) {
-    akee::ActorSystem * system = new akee::ActorSystemImpl(name, withFallBack);
-    if (system) {
-        system->start();
-    }
-    return system;
-}
-
 namespace akee {
 
 ActorSystem * ActorSystemImpl::createSystemImpl(const std::string & name, const Config & config) {

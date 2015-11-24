@@ -51,11 +51,13 @@ public:
     virtual void setChild(IActorRef * child) const = 0;
     virtual void setSystem(ActorSystem * system) const = 0;
 
+    virtual IActorContext * create() = 0;
     virtual void stop(IActorRef * child) = 0;
+    virtual void release() = 0;
 
 #if 0
     virtual IActorRef * actorOf(const Props & props, const std::string & name = "") const {
-        ActorRef * actorNew = ActorSystem::findActor(props, name);
+        IActorRef * actorNew = ActorSystem::findActor(props, name);
         if (actorNew) {
             //
         }

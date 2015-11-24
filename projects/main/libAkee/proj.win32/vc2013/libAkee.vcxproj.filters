@@ -7,7 +7,7 @@
     </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx;h;hh;hpp;hxx;hm;inl;inc;ipp;xsd;</Extensions>
     </Filter>
     <Filter Include="res">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -77,9 +77,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\ConfigurationFactory.h">
       <Filter>src\config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.h">
-      <Filter>src\actor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.h">
       <Filter>src\actor</Filter>
@@ -168,24 +165,15 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ExtendedActorSystem.h">
       <Filter>src\actor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystemFactory.h">
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.ipp">
       <Filter>src\actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorImpl.cpp">
-      <Filter>src\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\Actor.cpp">
-      <Filter>src\actor</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.cpp">
       <Filter>src\actor</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemImpl.cpp">
-      <Filter>src\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystemFactory.cpp">
       <Filter>src\actor</Filter>
     </ClCompile>
   </ItemGroup>

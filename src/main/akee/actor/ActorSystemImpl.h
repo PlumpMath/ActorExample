@@ -6,12 +6,12 @@
 #pragma once
 #endif
 
-#include "akee/basic/stddef.h"
 #include <string>
 
-#include <akee/actor/ExtendedActorSystem.h>
-#include <akee/config/Config.h>
-#include <akee/config/ConfigurationFactory.h>
+#include "akee/basic/stddef.h"
+#include "akee/actor/ExtendedActorSystem.h"
+#include "akee/config/Config.h"
+#include "akee/config/ConfigurationFactory.h"
 
 namespace akee {
 

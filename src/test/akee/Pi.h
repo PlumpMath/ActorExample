@@ -22,10 +22,9 @@
 #include <akee/routing/RouterConfig.h>
 #include <akee/routing/Router.h>
 #include <akee/routing/RoundRobinRouter.h>
-
 #include <akee/utils/Runtime.h>
 
-#include <akee/actor/ActorSystemFactory.cpp>
+#include <akee/actor/ActorSystem.ipp>
 
 using namespace akee;
 
@@ -232,7 +231,7 @@ public:
 
     void calculate(int numOfWorkers, int numOfMessages, int numOfElements) {
         // Create an actor system
-        ActorSystem * system = ActorSystemFactory::create("PiSystem");
+        ActorSystem * system = ActorSystem::create("PiSystem");
         if (system) {
 #if 1
             // Create the result listener, which will print the result and shutdown the system.

@@ -9,8 +9,6 @@
 #include <string>
 
 #include "akee/basic/stddef.h"
-//#include "akee/actor/ActorSystem.h"
-//#include "akee/actor/ActorSystemImpl.h"
 #include "akee/config/ConfigurationFactory.h"
 
 namespace akee {

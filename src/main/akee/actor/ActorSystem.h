@@ -40,10 +40,7 @@ private:
     }
 
 protected:
-    static ActorSystem * createAndStartSystem(const std::string & name, const Config & withFallBack) {
-        //return inlineCreateAndStartSystem(name, withFallBack);
-        return nullptr;
-    }
+    static ActorSystem * createAndStartSystem(const std::string & name, const Config & withFallBack);
 
 public:
     static ActorSystem * create(const std::string & name) {
@@ -82,9 +79,9 @@ public:
 
 }  /* namespace akee */
 
-#if 0
+#if 1
 
-#ifndef DEF_ACTORSYSTEM_NOINLINE
+#ifdef DEF_ACTORSYSTEM_INLINE
 
 #include "akee/actor/ActorSystemImpl.h"
 
@@ -100,7 +97,7 @@ ActorSystem * ActorSystem::createAndStartSystem(const std::string & name, const 
 
 }  /* namespace akee */
 
-#endif
+#endif  /* DEF_ACTORSYSTEM_INLINE */
 
 #endif
 
