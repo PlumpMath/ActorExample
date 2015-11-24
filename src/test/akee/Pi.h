@@ -18,7 +18,6 @@
 #include <akee/actor/ActorRef.h>
 #include <akee/actor/UntypedActor.h>
 #include <akee/actor/ActorSystem.h>
-#include <akee/actor/ActorSystemFactory.h>
 #include <akee/routing/RouterConfig.h>
 #include <akee/routing/Router.h>
 #include <akee/routing/RoundRobinRouter.h>

@@ -15,7 +15,6 @@
 #include "akee/actor/Props.h"
 #include "akee/actor/IActorRefFactory.h"
 #include "akee/actor/IDisposable.h"
-#include "akee/actor/ActorSystemFactory.h"
 
 namespace akee {
 
