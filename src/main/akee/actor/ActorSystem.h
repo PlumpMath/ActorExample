@@ -78,26 +78,4 @@ public:
 
 }  /* namespace akee */
 
-#if 1
-
-#ifdef DEF_ACTORSYSTEM_INLINE
-
-#include "akee/actor/ActorSystemImpl.h"
-
-namespace akee {
-
-ActorSystem * ActorSystem::createAndStartSystem(const std::string & name, const Config & withFallBack) {
-    ActorSystem * system = new ActorSystemImpl(name, withFallBack);
-    if (system) {
-        system->start();
-    }
-    return system;
-}
-
-}  /* namespace akee */
-
-#endif  /* DEF_ACTORSYSTEM_INLINE */
-
-#endif
-
 #endif  /* _AKEE_ACTOR_ACTORSYSTEM_H_ */

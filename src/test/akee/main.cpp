@@ -6,8 +6,6 @@
 #include <iostream>
 #include <string>
 
-#define DEF_ACTORSYSTEM_NOINLINE      // Excluding the static ActorSystem * ActorSystem::createAndStartSystem() method
-
 #include "Pi.h"
 
 int main(int argn, char * argv[])
