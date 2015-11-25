@@ -23,6 +23,7 @@
 #include <akee/routing/RoundRobinRouter.h>
 #include <akee/utils/Runtime.h>
 
+#include <akee/actor/ActorRef.ipp>
 #include <akee/actor/ActorSystem.ipp>
 
 using namespace akee;

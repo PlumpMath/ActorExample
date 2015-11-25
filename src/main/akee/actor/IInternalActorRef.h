@@ -6,13 +6,28 @@
 #pragma once
 #endif
 
+#include "akee/actor/IActorRef.h"
+#include "akee/actor/IActorRefScope.h"
+
 namespace akee {
 
-class IActorContext;
+class IActorRefProvider;
+class ISystemMessage;
 
-class IInternalActorRef {
+class IInternalActorRef : /* public IActorRef, */ public IActorRefScope {
 public:
-    virtual IActorContext * getContext() const = 0;
+    virtual IInternalActorRef * getParent() const = 0;
+    virtual IActorRefProvider * getProvider() const = 0;
+
+    virtual bool isTerminated() const = 0;
+    virtual IActorRef * getChild(const std::string & name) const = 0;
+
+    virtual void resume() = 0;
+    virtual void start() = 0;
+    virtual void stop() = 0;
+    virtual void restart() = 0;
+    virtual void suspend() = 0;
+    virtual void sendSystemMessage(const ISystemMessage * message, const IActorRef * sender = nullptr) = 0;
 };
 
 }  /* namespace akee */

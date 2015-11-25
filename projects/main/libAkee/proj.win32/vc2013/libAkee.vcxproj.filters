@@ -165,7 +165,25 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ExtendedActorSystem.h">
       <Filter>src\actor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\StringUtils.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\IActorRefScope.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ISystemMessage.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\INoSerializationVerificationNeeded.h">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\basic\threadlocal.h">
+      <Filter>src\basic</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.ipp">
+      <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorRef.ipp">
       <Filter>src\actor</Filter>
     </ClInclude>
   </ItemGroup>

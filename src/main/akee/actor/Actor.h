@@ -46,14 +46,6 @@ protected:
     }
 
 public:
-    std::string getName() const {
-        return this->name_;
-    }
-
-    void setName(const std::string & name) {
-        this->name_ = name;
-    }
-
     int start() {
         return 0;
     }

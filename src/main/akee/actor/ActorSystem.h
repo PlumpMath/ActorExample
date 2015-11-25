@@ -50,7 +50,7 @@ public:
         return createAndStartSystem(name, config);
     }
 
-    static IActorRef * findActor(const Props & props, const std::string & name) {
+    static IActorRef * findActor(const Props * props, const std::string & name) {
         return nullptr;
     }
 

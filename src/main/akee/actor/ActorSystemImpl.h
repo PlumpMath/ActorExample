@@ -43,16 +43,12 @@ protected:
 
 public:
     // IActorRefFactory
-    IActorRef * actorOf(const Props & props, const std::string & name = "") {
-        return nullptr;
-    }
-
     IActorRef * actorOf(const Props * props, const std::string & name = "") {
-        return nullptr;
-    }
-
-    ActorSelection * getActorSelection(const ActorPath & actorPath) const {
-        return nullptr;
+        IActorRef * actorNew = ActorSystem::findActor(props, name);
+        if (actorNew) {
+            //
+        }
+        return actorNew;
     }
 
     ActorSelection * getActorSelection(const ActorPath * actorPath) const {

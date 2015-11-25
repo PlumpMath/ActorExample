@@ -12,7 +12,7 @@ class ActorSystem;
 
 class ISurrogated {
 public:
-    virtual ISurrogated * toSurrogate(const ActorSystem & system) const = 0;
+    virtual ISurrogated * toSurrogate(const ActorSystem * system) = 0;
 };
 
 }  /* namespace akee */

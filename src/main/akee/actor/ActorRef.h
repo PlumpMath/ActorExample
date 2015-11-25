@@ -12,59 +12,114 @@
 #include "akee/basic/stddef.h"
 #include "akee/actor/ActorPath.h"
 #include "akee/actor/IActorRef.h"
+#include "akee/actor/IActorRefScope.h"
+#include "akee/actor/ISystemMessage.h"
+#include "akee/actor/IInternalActorRef.h"
+
 #include "akee/actor/IActorContext.h"
 #include "akee/actor/ActorBase.h"
+#include "akee/utils/StringUtils.h"
 
 namespace akee {
 
 class ActorRef;
 
-class IActorRefScope {
-private:
-    bool isLocal_;
-
-public:
-    IActorRefScope() : isLocal_(false) {
-    }
-
-    IActorRefScope(bool isLocal) : isLocal_(isLocal) {
-    }
-
-    virtual bool isLocal() const { return isLocal_; }
-};
-
 class ILocalRef : public IActorRefScope {
 public:
-    ILocalRef() : IActorRefScope(true) {
-    }
-
-    ILocalRef(bool isLocal) : IActorRefScope(isLocal) {
-    }
-
     bool isLocal() const { return true; }
 };
 
 class IRepointableRef : public IActorRefScope {
-private:
-    bool isStarted_;
-
 public:
-    IRepointableRef(bool isStarted, bool isLocal)
-        : IActorRefScope(isLocal),
-          isStarted_(isStarted) {
-    }
-
-    IRepointableRef(bool isStarted)
-        : IActorRefScope(),
-          isStarted_(isStarted) {
-    }
-
-    virtual bool isStarted() const { return isStarted_; }
+    virtual bool isStarted() const = 0;
 };
 
 class IActorRefProvider;
 
-class MinimalActorRef {};
+class ActorRefBase : public IActorRef {
+private:
+    ActorPath * path_;
+
+protected:
+    virtual void tellInternal(MessageObject message, const IActorRef * sender = nullptr) = 0;
+
+public:
+    // ICanTell
+    void tell(MessageObject message, const IActorRef * sender);
+
+    // ISurrogated
+    ISurrogated * toSurrogate(const ActorSystem * system) {
+        return nullptr;
+    }
+
+    // IActorRef
+    ActorPath * getPath() const {
+        return path_;
+    }
+
+    const char * toString() {
+        return StringUtils::format(path_->getLength() + 2, "[%s]", path_->toString());
+    }
+};
+
+class InternalActorRefBase : public ActorRefBase,
+                             public IInternalActorRef {
+private:
+    IInternalActorRef * parent_;
+    IActorRefProvider * provider_;
+
+public:
+    InternalActorRefBase() {}
+
+    // IInternalActorRef
+    virtual IInternalActorRef * getParent() const { return parent_; }
+    virtual IActorRefProvider * getProvider() const { return provider_; }
+
+    virtual bool isTerminated() const = 0;
+    virtual IActorRef * getChild(const std::string & name) const = 0;
+
+    virtual void resume() = 0;
+    virtual void start() = 0;
+    virtual void stop() = 0;
+    virtual void restart() = 0;
+    virtual void suspend() = 0;
+
+    void sendSystemMessage(const ISystemMessage * message, const IActorRef * sender /* = nullptr */) {
+        int msgType = message->getType();
+        if (msgType == ISystemMessage::LocalMessage::Terminate) {
+            stop();
+        }
+        else if (message != nullptr) {
+            this->tell((MessageObject)nullptr, nullptr);
+        }
+    }
+
+    // IActorRefScope
+    virtual bool isLocal() const = 0;
+};
+
+class MinimalActorRef : public InternalActorRefBase, public ILocalRef {
+public:
+    // IInternalActorRef
+    virtual bool isTerminated() const { return false; }
+    virtual IActorRef * getChild(const std::string & name) const {
+        return nullptr;
+    }
+
+    void resume() {};
+    void start() {};
+    void stop() {};
+    void restart() {};
+    void suspend() {};
+
+    // For ICanTell
+    void tellInternal(MessageObject message, const IActorRef * sender /* = nullptr */) {
+        //
+    }
+
+    // IActorRefScope
+    virtual bool isLocal() const { return true; }
+};
 
 class Nobody : public MinimalActorRef {
 public:
@@ -74,7 +129,7 @@ private:
     ActorPath * path_;
 
 private:
-    Nobody() : path_(NULL) {
+    Nobody() : path_(nullptr) {
         path_ = new RootActorPath("/Nobody");
     }
 
@@ -82,9 +137,7 @@ public:
     ~Nobody() { }
 
 public:
-    static void initNobody() {
-        instance_ = new Nobody();
-    }
+    static void initNobody();
 
     static Nobody * getInstance() {
         return instance_;
@@ -105,6 +158,11 @@ public:
         nosender_ = nullptr;
     }
 
+    static void staticFree() {
+        nobody_ = nullptr;
+        nosender_ = nullptr;
+    }
+
     static Nobody * getNobody() {
         return nobody_;
     }
@@ -114,42 +172,7 @@ public:
     }
 };
 
-class ITellable {
-public:
-    virtual void tell(void * func, const IActorRef * result = nullptr) = 0;
-};
-
-class ActorRefBase : public IActorRef {
-private:
-    ActorPath * path_;
-
-public:
-    virtual ActorPath * getPath() const {
-        return path_;
-    }
-};
-
-class IActorRefProvider;
-
-class InternalActorRefBase : public ActorRefBase, public IInternalActorRef {
-private:
-    IActorContext *     context_;
-    IInternalActorRef * parent_;
-    IActorRefProvider * provider_;
-
-public:
-    InternalActorRefBase() {}
-
-    virtual IInternalActorRef * getParent() const { return parent_; }
-    virtual IActorRefProvider * getProvider() const { return provider_; }
-
-    virtual IActorContext * getContext() const {
-        return context_;
-    }
-};
-
-class ActorRef : public ActorRefBase,
-                 public ITellable {
+class ActorRef : public ActorRefBase {
 private:
     std::string name_;
     IActorContext * context_;

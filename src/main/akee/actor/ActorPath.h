@@ -35,6 +35,10 @@ public:
         out = std::move(path_);
     }
 
+    std::size_t getLength() const {
+        return path_.length();
+    }
+
     const char * toString() const {
         return path_.c_str();
     }

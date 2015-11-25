@@ -10,9 +10,9 @@
 #include <iostream>
 
 #include "akee/basic/stddef.h"
-#include <akee/actor/IInternalActorRef.h>
-#include <akee/actor/IActorContext.h>
-#include <akee/actor/IActorRef.h>
+#include "akee/actor/IInternalActorRef.h"
+#include "akee/actor/IActorContext.h"
+#include "akee/actor/IActorRef.h"
 
 namespace akee {
 
@@ -26,14 +26,16 @@ public:
 class ActorBase : public IInternalActor {
 protected:
     std::string name_;
+    IActorRef * clearedSelf_;
     IActorContext * context_;
 
 public:
-    ActorBase() {
+    ActorBase() : clearedSelf_(nullptr), context_(nullptr) {
         initActor("default");
     }
 
-    ActorBase(const std::string & name) {
+    ActorBase(const std::string & name)
+     : clearedSelf_(nullptr), context_(nullptr) {
         initActor(name);
     }
 
@@ -49,15 +51,21 @@ private:
         name_ = name;
     }
 
+    bool hasBeenCleared() const {
+        return (clearedSelf_ != nullptr);
+    }
+
 protected:
     void cloneActor(const ActorBase & src) {
         this->name_ = src.name_;
     }
 
 public:
-    // IActorContext
+    // For IActorContext
     Props * getProps() const { return getContext()->getProps(); }
-    IActorRef * getSelf() const { return getContext()->getSelf(); }
+    IActorRef * getSelf() const {
+        return (hasBeenCleared() ? clearedSelf_ : getContext()->getSelf());
+    }
     IActorRef * getSender() const { return getContext()->getSender(); }
     IActorRef * getParent() const { return getContext()->getParent(); }
     IActorRef * getChild() const { return getContext()->getChild(); }
@@ -70,7 +78,15 @@ public:
     // IInternalActor
     virtual IActorContext * getActorContext() const {
         return this->getContext();
-    };
+    }
+
+    void clear(IActorRef * self) {
+        clearedSelf_ = self;
+    }
+
+    void unclear() {
+        clearedSelf_ = nullptr;
+    }
 
     std::string getName() const {
         return name_;
