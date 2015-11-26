@@ -40,6 +40,9 @@
     <Filter Include="src\scheduler">
       <UniqueIdentifier>{7088fa32-1270-4c87-bb23-6afbd46d0e7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\queue">
+      <UniqueIdentifier>{d78e3ac0-a191-4912-abdd-15e0a93fa6ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\src\main\Akee\basic\stddef.h">
@@ -185,6 +188,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\src\main\akee\actor\ActorRef.ipp">
       <Filter>src\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\ToString.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\MinMax.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\RoundTo.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\src\main\akee\queue\RingQueue.h">
+      <Filter>src\queue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -121,6 +121,7 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\Config.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\config\ConfigurationFactory.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\dispatch\Mailbox.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\queue\RingQueue.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RoundRobinRouter.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\Router.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\routing\RouterConfig.h" />
@@ -129,8 +130,11 @@
     <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\IScheduler.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\ITellScheduler.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\scheduler\ITimeProvider.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\MinMax.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\RoundTo.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\utils\Runtime.h" />
     <ClInclude Include="..\..\..\..\..\src\main\akee\utils\StringUtils.h" />
+    <ClInclude Include="..\..\..\..\..\src\main\akee\utils\ToString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\src\main\akee\actor\ActorSystem.cpp" />

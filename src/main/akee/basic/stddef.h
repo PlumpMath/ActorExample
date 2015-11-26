@@ -17,4 +17,8 @@
 #define AKEE_API        extern "C" static
 #endif
 
+#ifndef AKEE_CACHE_LINE_SIZE
+#define AKEE_CACHE_LINE_SIZE    64
+#endif
+
 #endif  /* _AKEE_BASIC_STDDEF_H_ */

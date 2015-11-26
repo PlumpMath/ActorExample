@@ -12,6 +12,9 @@
 
 #include "Pi.h"
 
+#include "akee/utils/RoundTo.h"
+#include "akee/queue/RingQueue.h"
+
 class A {};
 
 template <class T>
@@ -136,9 +139,19 @@ int main(int argn, char * argv[])
 
     test_object_pool();
 
-    char buf[1024];
-    std::cin.getline(buf, 1024, '\n');
+    RingQueueBase<uint64_t, 32> queue;
+    queue.capacity();
 
+    int isPow2 = akee::utils::is_pow_of_2<121>::value;
+    std::cout << "isPow2(121) = " << isPow2 << std::endl;
+
+    isPow2 = akee::utils::is_pow_of_2<128>::value;
+    std::cout << "isPow2(128) = " << isPow2 << std::endl;
+
+    size_t pow2 = akee::utils::round_up_to_pow2<33>::value;
+    std::cout << "pow2(33) = " << pow2 << std::endl;
+
+    std::cout << std::endl;
     system("pause");
     return 0;
 }
