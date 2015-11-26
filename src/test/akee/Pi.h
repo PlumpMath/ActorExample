@@ -96,17 +96,15 @@ double calulatePiFor(int start, int numOfElements) {
 }
 
 class Worker : public UntypedActor {
-protected:
-    struct LocalMessage {
-        enum {
-            Work
-        };
+public:
+    struct InnerMessage {
+        enum { Work };
     };
 
 public:
     void onReceive(MessageBase * message) {
         message_type msgType = message->getType();
-        if (msgType == LocalMessage::Work) {
+        if (msgType == InnerMessage::Work) {
             //Work * work = dynamic_cast<Work *>(message->getObject());
             Work * work = reinterpret_cast<Work *>(message->getObject());
             if (work) {
@@ -115,7 +113,7 @@ public:
             }
         }
         else {
-            Unhandle(message);
+            Unhandle("", message);
         }
     }
 };
@@ -129,12 +127,9 @@ private:
     IActorRef * listener_;
     IActorRef * workerRouter_;
 
-protected:
-    struct LocalMessage {
-        enum {
-            Calculate,
-            Result
-        };
+public:
+    struct InnerMessage {
+        enum { Calculate, Result };
     };
 
 public:
@@ -150,14 +145,10 @@ public:
             if (routerConfig) {
                 akee::Deploy * deploy = new akee::Deploy("Master");
                 if (deploy) {
-                    akee::Props * tmpProps = new akee::Props(deploy, 0);
-                    if (tmpProps) {
-                        akee::Props * props = tmpProps->withRouter(routerConfig);
-                        if (props) {
-                            workerRouter_ = this->getContext()->actorOf(props, "workerRouter");
-                            delete props;
-                        }
-                        delete tmpProps;
+                    akee::Props * props = akee::Props::createWithRouter(deploy, 0, routerConfig);
+                    if (props) {
+                        workerRouter_ = this->getContext()->actorOf(props, "workerRouter");
+                        delete props;
                     }
                     delete deploy;
                 }
@@ -177,7 +168,7 @@ public:
 
     void onReceive(MessageBase * message) {
         message_type msgType = message->getType();
-        if (msgType == LocalMessage::Calculate) {
+        if (msgType == InnerMessage::Calculate) {
             if (workerRouter_) {
                 for (int start = 0; start < numOfMessages_; ++start) {
                     Work work(start, numOfElements_);
@@ -185,25 +176,23 @@ public:
                 }
             }
         }
-        else if (msgType == LocalMessage::Result) {
+        else if (msgType == InnerMessage::Result) {
             //
         }
         else {
-            Unhandle(message);
+            Unhandle("Master", message);
         }
     }
 };
 
-class Linstener : public UntypedActor {
-protected:
-    struct LocalMessage {
-        enum {
-            PiApproximation
-        };
+class Listener : public UntypedActor {
+public:
+    struct InnerMessage {
+        enum { PiApproximation };
     };
 public:
     void OnReceive(MessageObject message) {
-        if (LocalMessage::PiApproximation) {
+        if (InnerMessage::PiApproximation) {
             PiApproximation * approximation = reinterpret_cast<PiApproximation *>(message);
             if (approximation) {
                 std::cout << std::endl << "Pi approximation: \t\t" << approximation->getPi()
@@ -213,7 +202,7 @@ public:
             }
         }
         else {
-            Unhandle(message);
+            Unhandle("Listener", message);
         }
     }
 };
@@ -235,7 +224,7 @@ public:
         if (system) {
 #if 1
             // Create the result listener, which will print the result and shutdown the system.
-            IActorRef * listener = system->actorOf(new Props(new Linstener()), "linstener");
+            IActorRef * listener = system->actorOf(new Props(new Listener()), "listener");
             if (listener) {
                 // Create the master
                 IActorRef * master = system->actorOf(new Props(new UntypedActorFactory()), "master");

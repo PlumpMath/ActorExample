@@ -89,6 +89,12 @@ public:
         return copy;
     }
 
+    static Props * createWithRouter(const Deploy * deploy, uint32_t inputType, const RouterConfig * routerConfig) {
+        Deploy * deployNew = new Deploy(routerConfig);;
+        Props * props = new Props(deployNew, inputType);
+        return props;
+    }
+
 protected:
     void copyProps(const Props & src) {
         this->name_ = src.name_;

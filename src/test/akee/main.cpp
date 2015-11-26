@@ -6,11 +6,11 @@
 #include <iostream>
 #include <string>
 
-#include "Pi.h"
-
 #include <memory>
 #include <vector>
 #include <functional>
+
+#include "Pi.h"
 
 class A {};
 
@@ -135,6 +135,9 @@ int main(int argn, char * argv[])
     std::cout << text << std::endl;
 
     test_object_pool();
+
+    char buf[1024];
+    std::cin.getline(buf, 1024, '\n');
 
     system("pause");
     return 0;

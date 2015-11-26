@@ -101,6 +101,12 @@ public:
         std::cout << "Message Object: " << message << "." << std::endl;
         std::cout << ">>> ---------------- <<<" << std::endl;
     }
+
+    void Unhandle(const std::string & className, MessageObject message) {
+        std::cout << ">>> Class " << className << " unknown message. <<<" << std::endl;
+        std::cout << "Message Object: " << message << "." << std::endl;
+        std::cout << ">>> ---------------- <<<" << std::endl;
+    }
 };
 
 }  /* namespace akee */
